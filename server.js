@@ -29,7 +29,7 @@ var UserSchema = mongoose.Schema({
 var LocationSchema = mongoose.Schema({
     name:{type: String, required: true},
     LatAndLong:{type: String, require: true},
-    userComments:[{body: String, date: Date}]
+    userComments:[{body: String, username: ObjectId, ref:'User', date: Date}]
 })
 
 module.exports(User, Location);
