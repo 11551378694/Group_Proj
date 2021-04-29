@@ -23,13 +23,21 @@ var ObjectId = mongoose.Schema.Types.ObjectId;
 var UserSchema = mongoose.Schema({
     username: { type: String, required: true, unique: true },
     password: { type: String, required: true },
+    favouritePlace: {type: String}
 });
 
-module.exports(User);
+var LocationSchema = mongoose.Schema({
+    name:{type: String, required: true},
+    LatAndLong:{type: String, require: true},
+    userComments:[{body: String, date: Date}]
+})
+
+module.exports(User, Location);
 //module.exports = { Event, Location };
 //var Location = mongoose.model('Location', LocationSchema);
 //var Event = mongoose.model('Event', EventSchema);
 var User = mongoose.model('User', UserSchema);
+var Location = mongoose.model('Location', LocationSchema);
 
 
 // Upon connection failure
