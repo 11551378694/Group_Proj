@@ -61,13 +61,34 @@ class Home extends React.Component {
   }
 
 class Map extends React.Component{
-    render(){
-        return(
-            <div className="map">
-                document.write("Hello!")
-            </div>
-        );
-    }
+    constructor(props) {
+        super(props);
+        this.state = {
+          lng: -70.9,
+          lat: 42.35,
+          zoom: 9
+        };
+        this.mapContainer = React.createRef();
+      }
+
+      componentDidMount() {
+        const { lng, lat, zoom } = this.state;
+        const map = new mapboxgl.Map({
+          container: this.mapContainer.current,
+          style: 'mapbox://styles/mapbox/streets-v11',
+          center: [lng, lat],
+          zoom: zoom
+        });
+      }
+
+     render() {
+    const { lng, lat, zoom } = this.state;
+    return (
+      <div>
+        <div ref={this.mapContainer} className="map-container" />
+      </div>
+    );
+  }
 }
 
 ReactDOM.render(<Map />, document.querySelector('map'));
