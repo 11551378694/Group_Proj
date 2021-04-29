@@ -5,7 +5,7 @@ var cors = require('cors'); //Cross-origin resource sharing
 app.use(express.json());
 app.use(express.static('src'))
 app.use(cors());
-
+//
 //body-parser
 var bodyParser = require('body-parser');
 app.use(bodyParser.urlencoded({ extended: true }));
