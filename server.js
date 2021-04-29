@@ -23,7 +23,7 @@ var ObjectId = mongoose.Schema.Types.ObjectId;
 var UserSchema = mongoose.Schema({
     username: { type: String, required: true, unique: true },
     password: { type: String, required: true },
-    favouritePlace: {type: String}
+    favouritePlace: [String]
 });
 
 var LocationSchema = mongoose.Schema({
