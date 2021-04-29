@@ -5,7 +5,7 @@ var cors = require('cors'); //Cross-origin resource sharing
 app.use(express.json());
 app.use(express.static('src'))
 app.use(cors());
-//
+
 //body-parser
 var bodyParser = require('body-parser');
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -13,7 +13,7 @@ app.use(bodyParser.json());
 
 //Connect to mongoose
 var mongoose = require('mongoose');
-const { exec } = require('cli');
+var Schema = mongoose.Schema;
 mongoose.connect("mongodb://s1155:pw@localhost/s1155") //finish connecting to mongoose
 
 var db = mongoose.connection;
@@ -23,7 +23,7 @@ var ObjectId = mongoose.Schema.Types.ObjectId;
 var UserSchema = mongoose.Schema({
     username: { type: String, required: true, unique: true },
     password: { type: String, required: true },
-    favouritePlace: [String]
+    favouritePlace: [{ type: ObjectId, ref: 'Location' }]
 });
 
 var LocationSchema = mongoose.Schema({
@@ -33,9 +33,6 @@ var LocationSchema = mongoose.Schema({
 })
 
 module.exports(User, Location);
-//module.exports = { Event, Location };
-//var Location = mongoose.model('Location', LocationSchema);
-//var Event = mongoose.model('Event', EventSchema);
 var User = mongoose.model('User', UserSchema);
 var Location = mongoose.model('Location', LocationSchema);
 
@@ -46,10 +43,6 @@ db.on("error", console.error.bind(console, "Connection error:"));
 db.once('open', function () {
     console.log("Connection is open...");
 });
-
-
-
-//Hello World
 
 //my port: 2117
 const server = app.listen(2117);
