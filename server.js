@@ -14,7 +14,7 @@ app.use(bodyParser.json());
 //Connect to mongoose
 var mongoose = require('mongoose');
 const { exec } = require('cli');
-mongoose.connect("mongodb://s1155138694:x78676@localhost/s1155138694") //finish connecting to mongoose
+mongoose.connect("mongodb://s1155:pw@localhost/s1155") //finish connecting to mongoose
 
 var db = mongoose.connection;
 var ObjectId = mongoose.Schema.Types.ObjectId;
