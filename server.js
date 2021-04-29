@@ -20,15 +20,16 @@ var db = mongoose.connection;
 var ObjectId = mongoose.Schema.Types.ObjectId;
 
 //Event Schema
-var userSchema = mongoose.Schema({
+var UserSchema = mongoose.Schema({
     username: { type: String, required: true, unique: true },
     password: { type: String, required: true },
 });
 
-
-module.exports = { Event, Location };
-var Location = mongoose.model('Location', LocationSchema);
-var Event = mongoose.model('Event', EventSchema);
+module.exports(User);
+//module.exports = { Event, Location };
+//var Location = mongoose.model('Location', LocationSchema);
+//var Event = mongoose.model('Event', EventSchema);
+var User = mongoose.model('User', UserSchema);
 
 
 // Upon connection failure
