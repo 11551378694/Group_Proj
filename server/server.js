@@ -14,12 +14,11 @@ app.use(bodyParser.json());
 //Connect to mongoose
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
-mongoose.connect("mongodb://s1155:pw@localhost/s1155") //finish connecting to mongoose
+mongoose.connect('mongodb://s1155108980:x67037@localhost/s1155108980')//finish connecting to mongoose
 
 var db = mongoose.connection;
 var ObjectId = mongoose.Schema.Types.ObjectId;
 
-//Event Schema
 var UserSchema = mongoose.Schema({
     userId: {type: Number, required: true, unique: true},
     username: { type: String, required: true, unique: true },
@@ -28,15 +27,23 @@ var UserSchema = mongoose.Schema({
 });
 
 var LocationSchema = mongoose.Schema({
+    locationId: {type: String, required:true}, 
     name:{type: String, required: true},
-    LatAndLong:{type: String, require: true},
+    latitude: {type: Number, required: true},
+    longitude: {type: Number, required: true},
     userComments:[{body: String, username: ObjectId, ref:'User', date: Date}]
 })
 
-module.exports(User, Location);
+var DestinationSchema = mongoose.Schema({
+    destinationId: {type: String, required:true},
+    name: {type: String, required: true}
+})
 
 var User = mongoose.model('User', UserSchema);
 var Location = mongoose.model('Location', LocationSchema);
+var Destination = mongoose.model('Destination', DestinationSchema)
+
+module.exports(User, Location, Destination);
 
 // Upon connection failure
 db.on("error", console.error.bind(console, "Connection error:"));

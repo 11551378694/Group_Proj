@@ -11,12 +11,20 @@ var UserSchema = mongoose.Schema({
 });
 
 var LocationSchema = mongoose.Schema({
+    locationId: {type: String, required:true}, 
     name:{type: String, required: true},
-    LatAndLong:{type: String, require: true},
+    latitude: {type: Number, required: true},
+    longitude: {type: Number, required: true},
     userComments:[{body: String, username: ObjectId, ref:'User', date: Date}]
 })
 
-module.exports(User, Location);
+var DestinationSchema = mongoose.Schema({
+    destinationId: {type: String, required:true},
+    name: {type: String, required: true}
+})
 
 var User = mongoose.model('User', UserSchema);
 var Location = mongoose.model('Location', LocationSchema);
+var Destination = mongoose.model('Destination', DestinationSchema)
+
+module.exports(User, Location, Destination);
