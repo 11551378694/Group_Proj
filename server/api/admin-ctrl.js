@@ -17,7 +17,18 @@ createUser = (req, res) => {
 }
 
 retrieveUser = (req, res) => {
-
+    var query = User.findOne({userId: req.params['userId']}, function (err, result) {
+        if (result == null) {
+          return res.send("No existed userID");
+        } else {
+          query.exec(function (err, user) {
+            if (err) return handleError(err);
+              res.send("This is user "+user.userId+":<br>\n" +
+                "Username: " + user.username + "<br>\n" +
+                "Password: " + user.password + "<br>\n");
+            }
+          )}
+      })
 }
 
 
