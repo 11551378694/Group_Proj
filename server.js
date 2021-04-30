@@ -21,6 +21,7 @@ var ObjectId = mongoose.Schema.Types.ObjectId;
 
 //Event Schema
 var UserSchema = mongoose.Schema({
+    userId: {type: Number, required: true, unique: true},
     username: { type: String, required: true, unique: true },
     password: { type: String, required: true },
     favouritePlace: [String]
