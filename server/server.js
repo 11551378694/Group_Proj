@@ -33,9 +33,9 @@ var LocationSchema = mongoose.Schema({
 })
 
 module.exports(User, Location);
+
 var User = mongoose.model('User', UserSchema);
 var Location = mongoose.model('Location', LocationSchema);
-
 
 // Upon connection failure
 db.on("error", console.error.bind(console, "Connection error:"));
@@ -43,6 +43,10 @@ db.on("error", console.error.bind(console, "Connection error:"));
 db.once('open', function () {
     console.log("Connection is open...");
 });
+
+const adminRouter = require('./api/admin-router')
+
+app.use('/admin', adminRouter)
 
 //my port: 2117
 const server = app.listen(2117);
