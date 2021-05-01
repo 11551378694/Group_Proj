@@ -22,8 +22,8 @@
 
 ### Non-user actions
 
- - [ ] Log in as user with username and password
- - [ ] Log in as admin using username and password both as admin
+ - [x] Log in as user with username and password
+ - [x] Log in as admin using username and password both as admin
 
 ## User System
 
