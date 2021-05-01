@@ -77,7 +77,10 @@ fetch('https://resource.data.one.gov.hk/td/journeytime.xml')
                 }
     //console.log(formattedData);
 });
-
+// return formatted data to the table in react app 
+app.get('/getinformationfortable',function(req,res){
+        res.send(JSON.stringify(formattedData));
+});
 
 const adminRouter = require('./api/admin-router')
 
