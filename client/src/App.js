@@ -57,4 +57,59 @@ class Test extends React.Component {
   }
 }
 
-export default App;
+class Table extends React.Component{
+        constructor(props){
+                super(props);
+                this.state = {places:[]};
+        }
+        componentDidMount(){
+                fetch("http://csci2720-g74.cse.cuhk.edu.hk/getinformationfortable")
+                .then(res=>res.json())
+                .then(placesList =>{
+                        this.setState({places:placesList});
+                });
+        }
+        render(){
+
+        return(
+                <>
+                <p>This is a table</p>
+        <table>
+          <tr>
+                <th>sort</th>
+                <th>locationID</th>
+                <th>destinationID</th>
+                <th>capatureDate</th>
+                <th>journeyType</th>
+                <th>journeyData</th>
+                <th>colorID</th>
+
+          </tr>
+          {this.state.places.map((place,index) =>(
+                  <tr key={index}>
+                          <th>{index}</th>
+                          <td>{place.locationID}</td>
+                          <td>{place.destinationID}</td>
+                          <td>{place.captureDate}</td>
+                          <td>{place.journeyType}</td>
+                          <td>{place.journeyData}</td>
+                          <td>{place.colorID}</td>
+                </tr>
+                ))
+          }
+         </table>
+
+                </>
+                );
+        }
+}
+
+function AllApp(){
+        return(
+                <>
+                <App />
+                <Table />
+                </>
+        );
+}
+export default AllApp;
