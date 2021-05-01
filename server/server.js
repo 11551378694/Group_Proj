@@ -1,5 +1,8 @@
 const express = require('express');
 const app = express();
+const fetch = require('node-fetch'); //for fetching the xml file from the api
+const DOMParser = require('xmldom').DOMParser; // for parsing the xml file
+
 var cors = require('cors'); //Cross-origin resource sharing
 //whenever get the request, I'll call this function to use express.json(), to interpret the incoming jSON
 app.use(express.json());
@@ -51,6 +54,30 @@ db.on("error", console.error.bind(console, "Connection error:"));
 db.once('open', function () {
     console.log("Connection is open...");
 });
+
+var formattedData = []; // store the data in the readable format fetched from the api 
+//convert the raw data into readable format
+fetch('https://resource.data.one.gov.hk/td/journeytime.xml')
+        .then(res=>res.text())
+        .then(data => {
+                let parser = new DOMParser();
+                let xml = parser.parseFromString(data,'text/xml');
+                let places = xml.getElementsByTagName('jtis_journey_time');
+                //console.log(places[0].childNodes[1].childNodes[0].data);
+                for (i=0;i<places.length;i++){
+                        formattedData.push({
+                                locationID: places[i].childNodes[1].childNodes[0].data,
+                                destinationID: places[i].childNodes[3].childNodes[0].data,
+                                captureDate: places[i].childNodes[5].childNodes[0].data,
+                                journeyType: places[i].childNodes[7].childNodes[0].data,
+                                journeyData: places[i].childNodes[9].childNodes[0].data,
+                                colorID: places[i].childNodes[11].childNodes[0].data
+
+                        });
+                }
+    //console.log(formattedData);
+});
+
 
 const adminRouter = require('./api/admin-router')
 
