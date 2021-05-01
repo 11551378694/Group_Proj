@@ -4,9 +4,9 @@ const Schema = mongoose.Schema
 var ObjectId = mongoose.Schema.Types.ObjectId;
 
 var UserSchema = mongoose.Schema({
-    userId: {type: Number, required: true, unique: true},
     username: { type: String, required: true, unique: true },
     password: { type: String, required: true },
+    roles: [{ type: ObjectId, ref: "Role"}],
     favouritePlace: [{ type: ObjectId, ref: 'Location' }]
 });
 
@@ -23,8 +23,13 @@ var DestinationSchema = mongoose.Schema({
     name: {type: String, required: true}
 })
 
+var RoleSchema = mongoose.Schema({
+    name: {type: String}
+})
+
 var User = mongoose.model('User', UserSchema);
 var Location = mongoose.model('Location', LocationSchema);
 var Destination = mongoose.model('Destination', DestinationSchema)
+var Role = mongoose.model('Role', RoleSchema)
 
-module.exports(User, Location, Destination);
+module.exports(User, Location, Destination, Role);
