@@ -1,5 +1,4 @@
 const User = require('../models/model').User
-const Role = require('../models/model').Role
 
 createUser = (req, res) => {
   let max_user;
@@ -8,7 +7,7 @@ createUser = (req, res) => {
   query.exec((err, user) => {
     if (err) return handleError(err);
     //hard coded user role id
-    let userRoleID = require('mongoose').Schema.Types.ObjectId("608d6053f7a20712088f6df6")
+    let userRoleID = require('mongoose').Types.ObjectId("608d6053f7a20712088f6df6")
     max_user = user.userId + 1;
     var account = new User({
       userId: max_user,
