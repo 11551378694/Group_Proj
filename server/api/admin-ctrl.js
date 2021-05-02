@@ -12,7 +12,7 @@ createUser = (req, res) => {
     var account = new User({
       userId: max_user,
       username: req.body['username'],
-      password: req.body['password'],
+      password: require("bcryptjs").hashSync(req.body['password'], 8),
       favouritePlace: [],
       roles: [userRoleID]
     })
@@ -52,7 +52,7 @@ updateUser = (req, res) => {
         flag++
       }
       if (req.body['password'] !== null && req.body['password'] !== undefined) {
-        user["password"] = req.body['password']
+        user["password"] = require("bcryptjs").hashSync(req.body['password'], 8)
         flag++
       }
       if (flag !== 0) {
