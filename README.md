@@ -43,6 +43,11 @@ Please make sure that you are connecting to the CUHK VPN
 
 ` The database is connecting to 1155108980's database. It requires to reopen in sometimes. Please contact me if you want to use 1155108980's database.`
 
+### Remark
+
+The backend opens port 8080. Please don't change it at this moment because the frontend api is using `localhost:8080`
+If you change it, it will display `Network Error`
+
 
 ## Structure
 server folder for backend
