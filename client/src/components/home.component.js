@@ -34,6 +34,7 @@ export default class Home extends Component {
       <div className="container">
         <header className="jumbotron">
           <h3>{this.state.content}</h3>
+          <h4>Journey time indicators</h4>
         </header>
       </div>
     );
