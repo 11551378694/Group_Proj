@@ -2,14 +2,14 @@ const User = require('../app/models/user.model')
 
 createUser = (req, res) => {
   let max_user;
-  var query = User.findOne({});
+  let query = User.findOne({});
   query.sort({ userId: -1 })
   query.exec((err, user) => {
     if (err) return handleError(err);
     //hard coded user role id
     let userRoleID = require('mongoose').Types.ObjectId("608d6053f7a20712088f6df6")
     max_user = user.userId + 1;
-    var account = new User({
+    let account = new User({
       userId: max_user,
       username: req.body['username'],
       password: require("bcryptjs").hashSync(req.body['password'], 8),
@@ -25,15 +25,16 @@ createUser = (req, res) => {
 }
 
 retrieveUser = (req, res) => {
-  var query = User.findOne({ userId: req.params['userId'] }, function (err, result) {
+  let query = User.findOne({ userId: req.params['userId'] }, (err, result) => {
     if (result == null) {
       return res.send("No existed userID");
     } else {
-      query.exec(function (err, user) {
+      query.exec((err, user) => {
         if (err) return handleError(err);
         res.send("This is user " + user.userId + ":<br>\n" +
-          "Username: " + user.username + "<br>\n" +
-          "Password: " + user.password + "<br>\n");
+          "Username: " + user.username + "<br>\n");
+        //Do not send the password just because it is required in the spec
+        //+ "Password: " + user.password + "<br>\n");
       }
       )
     }
