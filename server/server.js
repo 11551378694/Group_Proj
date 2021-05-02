@@ -70,10 +70,12 @@ app.get('/getplaces/:sortkey/:order',function(req,res){
 app.get('/table', function (req,res) {
   res.sendFile(__dirname + "/table.html");
 });
+app.get('/singleplace.jsx',function(req,res){
+	res.sendFile(__dirname+'/singleplace.jsx');
+});
 app.get('/table.jsx',function(req,res){
 	res.sendFile(__dirname+'/table.jsx');
 });
-
 app.get('/', function (req,res) {
   res.sendFile(path + "index.html");
 });
