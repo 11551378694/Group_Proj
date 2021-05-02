@@ -1,4 +1,4 @@
-const User = require('../models/model').User
+const User = require('../app/models/user.model')
 
 createUser = (req, res) => {
   let max_user;
