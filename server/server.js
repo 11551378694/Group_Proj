@@ -39,6 +39,41 @@ db.mongoose
     process.exit();
   });
 
+const Location = db.location;
+app.get('/getplaces/:sortkey/:order',function(req,res){
+        let sortkey = req.params.sortkey;
+	let order = Number(req.params.order);
+        Location.find({})
+                .sort([[sortkey,order]])
+                .exec(function(err, locations){
+                if(err)
+                        console.log("Error in get locations from db");
+
+                let locationList = [];
+                if(locations.length>0){
+                        for(i = 0;i<locations.length;i++){
+                                let location = {
+                                        locationId : locations[i].locationId,
+                                        name : locations[i].name,
+                                        latitude : locations[i].latitude,
+                                        longitude : locations[i].longitude
+                                }
+                                locationList.push(location);
+                        }
+                }
+
+                res.send(JSON.stringify(locationList));
+        });
+});
+
+				
+app.get('/table', function (req,res) {
+  res.sendFile(__dirname + "/table.html");
+});
+app.get('/table.jsx',function(req,res){
+	res.sendFile(__dirname+'/table.jsx');
+});
+
 app.get('/', function (req,res) {
   res.sendFile(path + "index.html");
 });
