@@ -1,25 +1,27 @@
-const User = require('../models/model')
+const User = require('../models/model').User
+const Role = require('../models/model').Role
 
 createUser = (req, res) => {
   let max_user;
   var query = User.findOne({});
-  query.sort({userId: -1})
-  query.exec(function (err, user) {
-    if(err) return handleError(err);
-      max_user = user.userId + 1;
-
-      var account = new User({
-        userId: max_user,
-        username: req.body['username'],
-        password: req.body['password'],
-        favouritePlace: []
-      })
-      account.save(function (err) {
-        if (err)
-          res.send(err);
-    
-        console.log("Create user success")
-      })
+  query.sort({ userId: -1 })
+  query.exec((err, user) => {
+    if (err) return handleError(err);
+    //hard coded user role id
+    let userRoleID = require('mongoose').mongo.ObjectID("608d6053f7a20712088f6df6")
+    max_user = user.userId + 1;
+    var account = new User({
+      userId: max_user,
+      username: req.body['username'],
+      password: req.body['password'],
+      favouritePlace: [],
+      roles: [userRoleID]
+    })
+    account.save((err) => {
+      if (err)
+        res.send(err);
+      console.log("Create user success")
+    })
   })
 }
 
