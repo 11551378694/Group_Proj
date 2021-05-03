@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-
+import { Link } from "react-router-dom";
 import UserService from "../services/user.service";
 
 export default class BoardAdmin extends Component {
@@ -35,7 +35,20 @@ export default class BoardAdmin extends Component {
     return (
       <div className="container">
         <header className="jumbotron">
-          <h3>{this.state.content}</h3>
+          <p>User CRUD</p>
+          <ul>
+            <li><Link to="/register">Create User</Link></li>
+            <li>Retrieve all username</li>
+            <li>Update user</li>
+            <li>Delete user</li>
+          </ul>
+          <p>Place CRUD</p>
+          <ul>
+            <li>Create Place</li>
+            <li>Retrieve all places</li>
+            <li>Update place</li>
+            <li>Delete place</li>
+          </ul>
         </header>
       </div>
     );
