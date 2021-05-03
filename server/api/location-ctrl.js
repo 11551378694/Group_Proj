@@ -23,7 +23,7 @@ createLocation = (req, res) => {
 }
 
 retrieveLocation = (req, res) => {
-  let query = Location.findOne({ locationId: req.params['locationId'] }, (err, result) => {
+  let query = Location.findOne({ locationId: parseInt(req.body['locationId']) }, (err, result) => {
     if (result == null) {
       return res.send("No existed locationId");
     } else {
@@ -40,7 +40,7 @@ retrieveLocation = (req, res) => {
 }
 
 updateLocation = (req, res) => {
-  Location.findOne({ locationId: req.params['locationId'] }, (err, result) => {
+  Location.findOne({ locationId: parseInt(req.body['locationId']) }, (err, result) => {
     if (result == null) {
       return res.send("No existed locationId");
     } else {
@@ -60,7 +60,7 @@ updateLocation = (req, res) => {
       }
       if (flag !== 0) {
         Location.findOneAndUpdate(
-          { locationId: req.params['locationId'] },
+          { locationId: parseInt(req.body['locationId']) },
           locationObj,
           (err, result) => {
             if (err) return handleError(err);
@@ -75,12 +75,12 @@ updateLocation = (req, res) => {
 }
 
 deleteLocation = (req, res) => {
-  Location.findOne({ locationId: req.params['locationId'] }, (err, result) => {
+  Location.findOne({ locationId: parseInt(req.body['locationId']) }, (err, result) => {
     if (result == null) {
       return res.send("No existed locationId");
     } else {
       Location.findOneAndDelete(
-        { locationId: req.params['locationId'] },
+        { locationId: parseInt(req.body['locationId']) },
         (err) => {
           if (err) return handleError(err);
           res.send("Delete location success");
