@@ -9,12 +9,12 @@
 
 /api/admin-router.js is for the routing for the CRUD of user schema.
 
-|     Action    |           Path          | Method |          Request body field          |
-|:-------------:|:-----------------------:|:------:|:------------------------------------:|
-| Create user   | '/admin/user/create'    | POST   | Required: "username", "password"     |
-| Retrieve user | '/admin/user/:userId'   | GET    |                                      |
-| Update user   | '/admin/update/:userId' | POST   | At least one: "username", "password" |
-| Delete user   | '/admin/delete/:userId' | POST   |                                      |
+| Action        | Path                 | Method | Request body field                                       |
+|---------------|----------------------|--------|----------------------------------------------------------|
+| Create user   | '/admin/user/create' | POST   | Required: "username", "password"                         |
+| Retrieve user | '/admin/user/'       | POST   | Required: "userId"                                       |
+| Update user   | '/admin/update/'     | POST   | Required: "userId"; at least one: "username", "password" |
+| Delete user   | '/admin/delete/'     | POST   | Required: "userId"                                       |
 
 /api/admin-ctrl.js is the code of the CRUD of user schema.
 
@@ -22,12 +22,12 @@
 
 /api/location-router.js is for the routing for the CRUD of location schema.
 
-|       Action      |                 Path                 | Method |               Request body field              |
-|:-----------------:|:------------------------------------:|:------:|:---------------------------------------------:|
-| Create Location   | '/admin/location/create'             | POST   | Required: "name", "latitude", "longitude"     |
-| Retrieve Location | '/admin/location/:locationId'        | GET    |                                               |
-| Update Location   | '/admin/location/update/:locationId' | POST   | At least one: "name", "latitude", "longitude" |
-| Delete Location   | '/admin/location/delete/:locationId' | POST   |                                               |
+|       Action      |            Path           | Method |                           Request body field                          |
+|:-----------------:|:-------------------------:|:------:|:---------------------------------------------------------------------:|
+| Create Location   | '/admin/location/create'  | POST   | Required: "locationId", "name", "latitude", "longitude"               |
+| Retrieve Location | '/admin/location/'        | POST   | Required: "locationId"                                                |
+| Update Location   | '/admin/location/update/' | POST   | Required: "locationId"; at least one: "name", "latitude", "longitude" |
+| Delete Location   | '/admin/location/delete/' | POST   | Required: "locationId"                                                |
 
 /api/location-ctrl.js is the code of the CRUD of location schema.
 
