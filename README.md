@@ -32,8 +32,9 @@
 Please make sure that you are connecting to the CUHK VPN
 1. Download the server folder
 2. Unzip
-3. run `npm install`
-4. run `node server.js`
+3. move to `server` folder
+4. run `npm install`
+5. run `node server.js`
 
 ### How to update frontend?
 
