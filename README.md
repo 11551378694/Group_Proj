@@ -18,7 +18,7 @@
  - [ ] Refresh data, i.e. reload from the online dataset, without affecting data which does not come from API (e.g. user comments within your app)
  - [ ] CRUD place data in the local database
  - [ ] CRUD user data (username and password only) in the local database
- - [ ] Log out as admin
+ - [x] Log out as admin
 
 ### Non-user actions
 
