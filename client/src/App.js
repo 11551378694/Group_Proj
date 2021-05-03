@@ -111,10 +111,10 @@ class App extends Component {
             <Route exact path="/register" component={Register} />
             <Route exact path="/profile" component={Profile} />
             <Route path="/user" component={BoardUser} />
-            <Route path="/admin" component={BoardAdmin} />
-            <Route path="/admin/user/retrieve" component={AdminUserRetrieve} />
-            <Route path="/admin/user/update" component={AdminUserUpdate} />
-            <Route path="/admin/user/delete" component={AdminUserDelete} />
+            <Route exact path="/admin" component={BoardAdmin} />
+            <Route exact path="/admin/user/retrieve" component={AdminUserRetrieve} />
+            <Route exact path="/admin/user/update" component={AdminUserUpdate} />
+            <Route exact path="/admin/user/delete" component={AdminUserDelete} />
           </Switch>
         </div>
       </div>
