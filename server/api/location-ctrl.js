@@ -1,29 +1,22 @@
 const Location = require('../app/models/location.model')
 
 createLocation = (req, res) => {
-  let max_location;
-  let query = Location.findOne({});
-  query.sort({ locationId: -1 })
-  query.exec((err, location) => {
-    if (err) return handleError(err);
-    max_location = location.locationId + 1;
-    let new_location = new Location({
-      locationId: max_location,
-      name: req.body['name'],
-      latitude: parseFloat(req.body['latitude']),
-      longitude: parseFloat(req.body['longitude']),
-      userComments: []
-    })
-    new_location.save((err) => {
-      if (err)
-        res.send(err);
-      console.log("Create Location success")
-    })
+  let new_location = new Location({
+    locationId: req.body['locationId'],
+    name: req.body['name'],
+    latitude: parseFloat(req.body['latitude']),
+    longitude: parseFloat(req.body['longitude']),
+    userComments: []
+  })
+  new_location.save((err) => {
+    if (err)
+      res.send(err);
+    console.log("Create Location success")
   })
 }
 
 retrieveLocation = (req, res) => {
-  let query = Location.findOne({ locationId: parseInt(req.body['locationId']) }, (err, result) => {
+  let query = Location.findOne({ locationId: req.body['locationId'] }, (err, result) => {
     if (result == null) {
       return res.send("No existed locationId");
     } else {
@@ -40,7 +33,7 @@ retrieveLocation = (req, res) => {
 }
 
 updateLocation = (req, res) => {
-  Location.findOne({ locationId: parseInt(req.body['locationId']) }, (err, result) => {
+  Location.findOne({ locationId: req.body['locationId'] }, (err, result) => {
     if (result == null) {
       return res.send("No existed locationId");
     } else {
@@ -60,7 +53,7 @@ updateLocation = (req, res) => {
       }
       if (flag !== 0) {
         Location.findOneAndUpdate(
-          { locationId: parseInt(req.body['locationId']) },
+          { locationId: req.body['locationId'] },
           locationObj,
           (err, result) => {
             if (err) return handleError(err);
@@ -75,7 +68,7 @@ updateLocation = (req, res) => {
 }
 
 deleteLocation = (req, res) => {
-  Location.findOne({ locationId: parseInt(req.body['locationId']) }, (err, result) => {
+  Location.findOne({ locationId: req.body['locationId'] }, (err, result) => {
     if (result == null) {
       return res.send("No existed locationId");
     } else {
