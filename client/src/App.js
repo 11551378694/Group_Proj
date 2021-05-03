@@ -14,6 +14,10 @@ import BoardAdmin from "./components/board-admin.component";
 import AdminUserRetrieve from './components/admin-user-retrieve.component'
 import AdminUserUpdate from './components/admin-user-update.component'
 import AdminUserDelete from './components/admin-user-delete.component'
+import AdminLocationCreate from './components/admin-location-create.component'
+import AdminLocationRetrieve from './components/admin-location-retrieve.component'
+import AdminLocationUpdate from './components/admin-location-update.component'
+import AdminLocationDelete from './components/admin-location-delete.component'
 
 class App extends Component {
   constructor(props) {
@@ -115,6 +119,10 @@ class App extends Component {
             <Route exact path="/admin/user/retrieve" component={AdminUserRetrieve} />
             <Route exact path="/admin/user/update" component={AdminUserUpdate} />
             <Route exact path="/admin/user/delete" component={AdminUserDelete} />
+            <Route exact path="/admin/location/create" component={AdminLocationCreate} />
+            <Route exact path="/admin/location/retrieve" component={AdminLocationRetrieve} />
+            <Route exact path="/admin/location/update" component={AdminLocationUpdate} />
+            <Route exact path="/admin/location/delete" component={AdminLocationDelete} />
           </Switch>
         </div>
       </div>

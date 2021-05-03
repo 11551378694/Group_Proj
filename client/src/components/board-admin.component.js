@@ -38,16 +38,16 @@ export default class BoardAdmin extends Component {
           <p>User CRUD</p>
           <ul>
             <li><Link to="/register">Create User</Link></li>
-            <li><Link to="/admin/user/retrieve">Retrieve all username</Link></li>
+            <li><Link to="/admin/user/retrieve">Retrieve username</Link></li>
             <li><Link to="/admin/user/update">Update user</Link></li>
             <li><Link to="/admin/user/delete">Delete user</Link></li>
           </ul>
           <p>Place CRUD</p>
           <ul>
-            <li>Create Place</li>
-            <li>Retrieve all places</li>
-            <li>Update place</li>
-            <li>Delete place</li>
+            <li><Link to="/admin/location/create">Create Place</Link></li>
+            <li><Link to="/admin/location/retrieve">Retrieve place</Link></li>
+            <li><Link to="/admin/location/update">Update place</Link></li>
+            <li><Link to="/admin/location/delete">Delete place</Link></li>
           </ul>
         </header>
       </div>
