@@ -25,7 +25,7 @@ createUser = (req, res) => {
 }
 
 retrieveUser = (req, res) => {
-  let query = User.findOne({ userId: req.params['userId'] }, (err, result) => {
+  let query = User.findOne({ userId: parseInt(req.body['userId']) }, (err, result) => {
     if (result == null) {
       return res.send("No existed userID");
     } else {
@@ -42,7 +42,7 @@ retrieveUser = (req, res) => {
 }
 
 updateUser = (req, res) => {
-  User.findOne({ userId: req.params['userId'] }, (err, result) => {
+  User.findOne({ userId: parseInt(req.body['userId']) }, (err, result) => {
     if (result == null) {
       return res.send("No existed userID");
     } else {
@@ -58,7 +58,7 @@ updateUser = (req, res) => {
       }
       if (flag !== 0) {
         User.findOneAndUpdate(
-          { userId: req.params['userId'] },
+          { userId: parseInt(req.body['userId']) },
           userObj,
           (err, result) => {
             if (err) return handleError(err);
@@ -73,12 +73,12 @@ updateUser = (req, res) => {
 }
 
 deleteUser = (req, res) => {
-  User.findOne({ userId: req.params['userId'] }, (err, result) => {
+  User.findOne({ userId: parseInt(req.body['userId']) }, (err, result) => {
     if (result == null) {
       return res.send("No existed userID");
     } else {
       User.findOneAndDelete(
-        { userId: req.params['userId'] },
+        { userId: parseInt(req.body['userId']) },
         (err) => {
           if (err) return handleError(err);
           res.send("delete user success");
