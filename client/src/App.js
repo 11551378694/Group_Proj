@@ -11,6 +11,9 @@ import Home from "./components/home.component";
 import Profile from "./components/profile.component";
 import BoardUser from "./components/board-user.component";
 import BoardAdmin from "./components/board-admin.component";
+import AdminUserRetrieve from './components/admin-user-retrieve.component'
+import AdminUserUpdate from './components/admin-user-update.component'
+import AdminUserDelete from './components/admin-user-delete.component'
 
 class App extends Component {
   constructor(props) {
@@ -109,6 +112,9 @@ class App extends Component {
             <Route exact path="/profile" component={Profile} />
             <Route path="/user" component={BoardUser} />
             <Route path="/admin" component={BoardAdmin} />
+            <Route path="/admin/user/retrieve" component={AdminUserRetrieve} />
+            <Route path="/admin/user/update" component={AdminUserUpdate} />
+            <Route path="/admin/user/delete" component={AdminUserDelete} />
           </Switch>
         </div>
       </div>

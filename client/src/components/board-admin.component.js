@@ -38,9 +38,9 @@ export default class BoardAdmin extends Component {
           <p>User CRUD</p>
           <ul>
             <li><Link to="/register">Create User</Link></li>
-            <li>Retrieve all username</li>
-            <li>Update user</li>
-            <li>Delete user</li>
+            <li><Link to="/admin/user/retrieve">Retrieve all username</Link></li>
+            <li><Link to="/admin/user/update">Update user</Link></li>
+            <li><Link to="/admin/user/delete">Delete user</Link></li>
           </ul>
           <p>Place CRUD</p>
           <ul>
