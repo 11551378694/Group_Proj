@@ -24,8 +24,8 @@ retrieveLocation = (req, res) => {
         if (err) return handleError(err);
         res.send("This is location " + location.locationId + ":<br>\n" +
           "Location name: " + location.name + "<br>\n" +
-          "Latitude: " + location.Latitude + "<br>\n" +
-          "Longitude: " + location.Longitude + "<br>\n");
+          "Latitude: " + location.latitude + "<br>\n" +
+          "Longitude: " + location.longitude + "<br>\n");
       }
       )
     }
