@@ -37,12 +37,21 @@ const Chart = () => {
                 let LOCATION_ID = start_list[document.querySelector("#input_LOCATION_ID").selectedIndex]
                 let DESTINATION_ID = end_list[document.querySelector("#input_DESTINATION_ID").selectedIndex]
                 if (input_type !== -1) {
-                    const timeToString = (thee) => {
+                    const timeToString = (thee, flag = true) => {
                         let ur = "" + thee.getFullYear()
+                        if (!flag) {
+                            ur = ur + "/"
+                        }
                         ur = ur + ("" + ((thee.getMonth() + 1) < 10 ? ("0" + (thee.getMonth() + 1)) : ("" + (thee.getMonth() + 1))))
+                        if (!flag) {
+                            ur = ur + "/"
+                        }
                         ur = ur + ("" + thee.getDate() < 10 ? ("0" + thee.getDate()) : ("" + thee.getDate()))
-                        ur = ur + ("" + "-")
+                        ur = ur + "-"
                         ur = ur + ("" + thee.getHours() < 10 ? ("0" + thee.getHours()) : ("" + thee.getHours()))
+                        if (!flag) {
+                            ur = ur + ":"
+                        }
                         ur = ur + ("" + thee.getMinutes() < 10 ? ("0" + thee.getMinutes()) : ("" + thee.getMinutes()))
                         return ur;
                     }
@@ -56,45 +65,55 @@ const Chart = () => {
                                 for (let jj = 0; jj < 4; jj++) {
                                     let thee = new Date((noww.getTime()) - 60 * 1000 * 60 * j - 60 * 1000 * 15 * jj)
                                     let ur = "https://api.data.gov.hk/v1/historical-archive/get-file?url=https%3A%2F%2Fresource.data.one.gov.hk%2Ftd%2Fjourneytime.xml&time="
-                                    ur = ur + timeToString(thee)
+                                    ur = ur + timeToString(thee, true)
                                     await fetch(ur)
                                         .then(response => response.text())
                                         .then(str => (new window.DOMParser()).parseFromString(str, "text/xml"))
                                         .then(data => {
-                                            let a = data.querySelectorAll("LOCATION_ID")
-                                            let b = data.querySelectorAll("DESTINATION_ID")
+                                            let a = data.querySelectorAll("jtis_journey_list LOCATION_ID")
+                                            //let b = data.querySelectorAll("DESTINATION_ID")
                                             for (let i = 0; i < a.length; i++) {
-                                                if (a[i].textContent === LOCATION_ID && b[i].textContent === DESTINATION_ID) {
-                                                    let c = data.querySelectorAll("JOURNEY_TYPE")
-                                                    if (c[i].textContent === "1") {
-                                                        let d = data.querySelectorAll("JOURNEY_DATA")
+                                                if (a[i].textContent === LOCATION_ID && a[i].nextElementSibling.textContent === DESTINATION_ID) {
+                                                    //let c = data.querySelectorAll("JOURNEY_TYPE")
+                                                    if (a[i].nextElementSibling.nextElementSibling.nextElementSibling.textContent === "1") {
+                                                        //let d = data.querySelectorAll("JOURNEY_DATA")
                                                         //let f = data.querySelectorAll("CAPTURE_DATE")
-                                                        da.unshift(parseInt(d[i].textContent))
-                                                        labels.unshift(timeToString(thee))
+                                                        //da.unshift(parseInt(d[i].textContent))
+                                                        da.unshift(parseInt(a[i].nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.textContent))
+                                                        labels.unshift(timeToString(thee, false))
+                                                        break;
                                                     }
                                                 }
                                             }
-                                        })
+                                        }).catch(() => { })
                                 }
                             }
                         }
                         return ([labels, da])
                     }
                     getXML(input_type).then((arr) => {
-                        document.querySelector("#result").innerHTML = '<canvas id="myChart" width="400" height="400"></canvas>'
+                        document.querySelector("#result").innerHTML = '<canvas id="myChart" width="400" height="200"></canvas>'
                         let ctx = document.getElementById('myChart');
                         new ch(ctx, {
                             type: 'line',
                             data: {
                                 labels: arr[0],
                                 datasets: [{
-                                    label: 'Waiting time in the past 10 hours',
+                                    label: 'Waiting time in the past 10 hours (in mins)',
                                     data: arr[1],
                                     fill: false,
                                     borderColor: 'rgb(75, 192, 192)',
-                                    tension: 0.1
+                                    tension: 0
                                 }]
                             },
+                            options: {
+                                scales: {
+                                    y: {
+                                        suggestedMin: 5,
+                                        suggestedMax: 30
+                                    }
+                                }
+                            }
                         });
                     })
                 } else {
