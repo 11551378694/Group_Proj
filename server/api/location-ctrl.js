@@ -73,7 +73,7 @@ deleteLocation = (req, res) => {
       return res.send("No existed locationId");
     } else {
       Location.findOneAndDelete(
-        { locationId: parseInt(req.body['locationId']) },
+        { locationId: req.body['locationId'] },
         (err) => {
           if (err) return handleError(err);
           res.send("Delete location success");
