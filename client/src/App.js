@@ -18,6 +18,7 @@ import AdminLocationCreate from './components/admin-location-create.component'
 import AdminLocationRetrieve from './components/admin-location-retrieve.component'
 import AdminLocationUpdate from './components/admin-location-update.component'
 import AdminLocationDelete from './components/admin-location-delete.component'
+import Chart from './components/chart.component'
 
 class App extends Component {
   constructor(props) {
@@ -76,6 +77,12 @@ class App extends Component {
                 </Link>
               </li>
             )}
+
+            <li className="nav-item">
+              <Link to={"/chart"} className="nav-link">
+                Chart
+                </Link>
+            </li>
           </div>
 
           {currentUser ? (
@@ -123,6 +130,7 @@ class App extends Component {
             <Route exact path="/admin/location/retrieve" component={AdminLocationRetrieve} />
             <Route exact path="/admin/location/update" component={AdminLocationUpdate} />
             <Route exact path="/admin/location/delete" component={AdminLocationDelete} />
+            <Route exact path="/chart" component={Chart} />
           </Switch>
         </div>
       </div>
