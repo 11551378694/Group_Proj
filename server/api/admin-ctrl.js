@@ -46,7 +46,7 @@ updateUser = (req, res) => {
     if (result == null) {
       return res.send("No existed userID");
     } else {
-      let userObj = {}
+      let user = {}
       let flag = 0
       if (req.body['username'] !== null && req.body['username'] !== undefined) {
         user["username"] = req.body['username']
@@ -59,7 +59,7 @@ updateUser = (req, res) => {
       if (flag !== 0) {
         User.findOneAndUpdate(
           { userId: parseInt(req.body['userId']) },
-          userObj,
+          user,
           (err, result) => {
             if (err) return handleError(err);
             res.send("Update user success");

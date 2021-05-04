@@ -6,7 +6,7 @@ export default class AdminUserDelete extends Component {
     render() {
         return (
             <div className="container">
-                <form action="http://csci2720-g23.cse.cuhk.edu.hk/admin/user/delete" method="post">
+                <form action="http://localhost:8080/admin/api/user/delete" method="post">
                     <label for="userId">userId: </label>
                     <input name='userId' />
                     <br />

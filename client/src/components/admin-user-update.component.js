@@ -6,7 +6,8 @@ export default class AdminUserUpdate extends Component {
     render() {
         return (
             <div className="container">
-                <form action="http://csci2720-g23.cse.cuhk.edu.hk/admin/user/update" method="post">
+                <form action="http://localhost:8080/admin/api/user/update" method="post">
+                    <p>Please don't leave blank in any input fields!!</p>
                     <label for="userId">userId: </label>
                     <input name='userId' />
                     <br />
