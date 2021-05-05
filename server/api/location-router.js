@@ -11,9 +11,9 @@ module.exports = function (app) {
     next();
   });
 
-  app.post('/admin/location/create', LocationCtrl.createLocation)
-  app.post('/admin/location/', LocationCtrl.retrieveLocation)
-  app.post('/admin/location/update/', LocationCtrl.updateLocation)
-  app.post('/admin/location/delete/', LocationCtrl.deleteLocation)
+  app.post('/admin/api/location/create', LocationCtrl.createLocation)
+  app.post('/admin/api/location/retrieve', LocationCtrl.retrieveLocation)
+  app.post('/admin/api/location/update', LocationCtrl.updateLocation)
+  app.post('/admin/api/location/delete', LocationCtrl.deleteLocation)
 
 }
