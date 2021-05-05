@@ -12,8 +12,8 @@ module.exports = function (app) {
   });
 
   app.post('/admin/user/create', AdminCtrl.createUser)
-  app.post('/admin/user/', AdminCtrl.retrieveUser)
-  app.post('/admin/update/', AdminCtrl.updateUser)
-  app.post('/admin/delete/', AdminCtrl.deleteUser)
+  app.post('/admin/api/user/retrieve', AdminCtrl.retrieveUser)
+  app.post('/admin/api/user/update', AdminCtrl.updateUser)
+  app.post('/admin/api/user/delete', AdminCtrl.deleteUser)
 
 }
