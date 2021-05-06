@@ -67,12 +67,6 @@ class App extends Component {
               </Link>
             </li>
 
-            <li className="nav-item">
-              <Link to={"/map"} className="nav-link">
-                Mapbox
-              </Link>
-            </li>
-
             {showAdminBoard && (
               <li className="nav-item">
                 <Link to={"/admin"} className="nav-link">
@@ -83,8 +77,8 @@ class App extends Component {
 
             {currentUser && (
               <li className="nav-item">
-                <Link to={"/user"} className="nav-link">
-                  User
+                <Link to={"/map"} className="nav-link">
+                  Map
                 </Link>
               </li>
             )}
@@ -101,11 +95,6 @@ class App extends Component {
               <Link to={"/chart"} className="nav-link">
                 Chart
                 </Link>
-            </li>
-            <li className="nav-item">
-              <Link to={"/table"} className="nav-link">
-                Table
-              </Link>
             </li>
           </div>
           

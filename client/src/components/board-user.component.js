@@ -37,7 +37,6 @@ export default class BoardUser extends Component {
       <div className="container">
         <header className="jumbotron">
           <h3>{this.state.content}</h3>
-          <Table />
         </header>
       </div>
     );
