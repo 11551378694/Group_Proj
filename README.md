@@ -50,6 +50,13 @@ Please make sure that you are connecting to the CUHK VPN
 The backend opens port 8080. Please don't change it at this moment because the frontend api is using `localhost:8080`
 If you change it, it will display `Network Error`
 
+#### Testing on VM
+
+If you want to test the web application on your VM, please change the API_URL of files:
+`client/src/services/auth.service.js`
+`client/src/services/user.service.js`
+Change from `http://localhost:8080/api/auth/` to `http://csci2720-g23.cse.cuhk.edu.hk/api/auth/`
+
 
 ## Structure
 server folder for backend
