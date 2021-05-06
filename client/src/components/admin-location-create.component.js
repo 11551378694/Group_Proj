@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-export const handleCRUDButtonSubmit = (url, dataObj) => {
+export const handleCRUDButtonSubmit = (url, data) => {
     fetch(url, {
         method: 'POST',
         headers: {
