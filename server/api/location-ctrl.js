@@ -11,7 +11,7 @@ createLocation = (req, res) => {
   new_location.save((err) => {
     if (err)
       res.send(err);
-    console.log("Create Location success")
+    res.send("Create Location success")
   })
 }
 
@@ -26,8 +26,7 @@ retrieveLocation = (req, res) => {
           "Location name: " + location.name + "<br>\n" +
           "Latitude: " + location.latitude + "<br>\n" +
           "Longitude: " + location.longitude + "<br>\n");
-      }
-      )
+      })
     }
   })
 }
