@@ -50,7 +50,20 @@ export default class BoardAdmin extends Component {
             <li><Link to="/admin/location/delete">Delete place</Link></li>
           </ul>
         </header>
-      </div>
+        <button onClick={() => {
+          fetch("http://localhost:8080/admin/api/location/refresh", {
+            method: 'POST',
+            headers: {
+              'Accept': 'application/json',
+              'Content-Type': 'application/json'
+            }
+          }).then(response =>
+            response.text()
+          ).then(response => {
+            alert(response)
+          })
+        }}>Refresh Data</button>
+      </div >
     );
   }
 }
