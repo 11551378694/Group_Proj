@@ -121,7 +121,24 @@ app.get('/getusercomments/:locationId',function(req,res){
 	});
 });
 
-				
+app.post('/postusercomments/:locationId',function(req,res){
+	let condition = {locationId : req.params.locationId};
+	let newData = {
+		body:req.body.body,
+		username:req.body.username,
+		date : req.body.date
+	};
+	Comment.find(condition).exec(function(err,res){console.log(res)});
+
+	Comment.update({'locationId': req.params.locationId},
+		{$push:{"userComments":newData}},function(err,raw){
+		if (err)
+			console.log(err);
+		console.log("the raw response : " + err);
+	});
+	
+});
+
 app.get('/table', function (req,res) {
   res.sendFile(__dirname + "/table.html");
 });
