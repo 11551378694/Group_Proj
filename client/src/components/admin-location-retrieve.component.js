@@ -1,15 +1,27 @@
 import React, { Component } from "react";
+import handleCRUDButtonSubmit from './admin-location-create.component'
 
 export default class AdminLocationRetrieve extends Component {
     render() {
         return (
             <div className="container">
-                <form action="http://localhost:8080/admin/api/location/retrieve" method="post">
+                <div id="form" class="event">
                     <label for="locationId">locationId: </label>
-                    <input name='locationId' />
+                    <input name='locationId' id="locationId" />
                     <br />
-                    <input type="submit" />
-                </form>
+                    <button onClick={() => {
+                        let inputList = [document.querySelector("#locationId").value]
+                        if (inputList.includes("")) {
+                            document.querySelector("#result").innerHTML = "Invalid Input. Try again."
+                        } else {
+                            handleCRUDButtonSubmit("http://localhost:8080/admin/api/location/retrieve", {
+                                "locationId": inputList[0]
+                            })
+                        }
+                    }}>Submit</button>
+                </div>
+                <div id="result">
+                </div>
             </div>
         );
     }
