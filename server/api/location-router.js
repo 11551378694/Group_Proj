@@ -15,5 +15,6 @@ module.exports = function (app) {
   app.post('/admin/api/location/retrieve', LocationCtrl.retrieveLocation)
   app.post('/admin/api/location/update', LocationCtrl.updateLocation)
   app.post('/admin/api/location/delete', LocationCtrl.deleteLocation)
+  app.post('/admin/api/location/refresh', LocationCtrl.refreshLocation)
 
 }
