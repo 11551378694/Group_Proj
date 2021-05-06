@@ -1,16 +1,17 @@
 import React, { Component } from "react";
 import {BrowserRouter as Router, Link, Route, Switch, useRouteMatch, useParams, useLocation} from "react-router-dom";//can be found in external library: ReactDOM
 import mapboxgl from 'mapbox-gl/dist/mapbox-gl-csp';
-
+import SearchIcon from '@material-ui/icons/Search';
 mapboxgl.accessToken = 'pk.eyJ1IjoibGV1bmczMDEiLCJhIjoiY2tvNnl2dHppMHJxbDJxcXdteTRvNnU3ZyJ9.HVslWQ3-PqqIw-ReK2hUsQ';
 
 export default class Table extends React.Component{
         constructor(props){
                 super(props);
-                this.state = {places:[],sortkey:"locationId",order:"1",lng:114.172101664 ,lat:22.279311622, location:'JTI at Gloucester Road eastbound near the Revenue Tower'};
+                this.state = {places:[],sortkey:"locationId",order:"1",searchKey:undefined,searchField:"locationId"};
 		this.handleOrderChange = this.handleOrderChange.bind(this);
 		this.handleFieldChange = this.handleFieldChange.bind(this);
 		this.handleClick = this.handleClick.bind(this);
+                this.handleSearch = this.handleSearch.bind(this);
         }
 
         componentDidMount(){
@@ -20,9 +21,31 @@ export default class Table extends React.Component{
                         this.setState({places:placesList});
                 });
         }
-	handleSubmit(event){
+
+        handleSearchKeyChange(event)
+        {
+                this.setState({searchKey:event.target.value});
+                
+                
+        }
+
+        handleSearchFieldChange(event)
+        {
+                this.setState({searchField:event.target.value});
+                
+        }
+
+	handleSearch(event){
+                console.log(this.state.searchKey);
+                console.log(this.state.searchField);
 		event.preventDefault();
+                fetch('http://csci2720-g74.cse.cuhk.edu.hk/displaysearchresultintable/'+this.state.searchField+"/"+this.state.searchKey)
+                .then(res=>res.json())
+                .then(placeList =>{
+                        this.setState({places:placeList});
+                });
 	}
+
 
 	handleFieldChange(event){
 		this.setState({sortkey:event.target.value});
@@ -40,9 +63,8 @@ export default class Table extends React.Component{
                         this.setState({places:placesList});
                 });
 	}
-	handleClick(longitude,latitude,name){
-		console.log(name);
-		this.setState({lng:longitude,lat:latitude,location:name});
+	handleClick(longitude,latitude,name,locationId){
+		this.props.changePlace(locationId,latitude,longitude,name);
 	}
 
 
@@ -53,20 +75,32 @@ export default class Table extends React.Component{
 
         return(
                 <>
-                <p>This is a table</p>
-		
-			<label>
-				Sort the places according to:
+                <div className="container">
+
+                        <form>
+                                <div>Select field to Search: &nbsp;&nbsp;
+                                <select onChange={event=>{this.handleSearchFieldChange(event)}}>
+                                        <option value="locationId">Location ID</option>
+                                        <option value="name">Name</option>
+                                        <option value="latitude">Latitude</option>
+                                        <option value="longitude">Longitude</option>
+                                </select>
+                                </div>
+                                <input type="search" className="input-text-box"placeholder="Enter keyword" onChange={event=>{this.handleSearchKeyChange(event)}}/>
+                                <button type="button" className="input-text-button" onClick={event=>{this.handleSearch(event)}}><SearchIcon /></button>
+                        </form>
+			<label className="d-inline">
+				Sort the places according to:&nbsp;&nbsp;
 			<select value={this.state.sortkey}  onChange={this.handleFieldChange}>
 				<option value="locationId">Location ID</option>
 				<option value="name">Name</option>
 				<option value="latitude">Latitude</option>
 				<option value="longitude">Longitude</option>
 			</select>
-			</label>
+			</label >
 		
-			<label>
-			in 
+			<label className="d-inline">
+                        &nbsp;&nbsp;in &nbsp;&nbsp;
 			<select value={this.state.order} onChange={this.handleOrderChange}>
 				<option value="1">ascending</option>
 				<option value="-1">descending</option>
@@ -75,29 +109,33 @@ export default class Table extends React.Component{
 			</label>
 
 			
-        <table>
-          <tr>
-                <th>sort</th>
-                <th>locationID</th>
-                <th>name</th>
-                <th>latitude</th>
-                <th>longitude</th>
-          </tr>
-          {this.state.places.map((place,index) =>(
-                  <tr key={index}>
-                          <th>{index}</th>
-                          <td>{place.locationId}</td>
-                          <td><a href="#" onClick={()=>this.handleClick(place.longitude,place.latitude,place.name)}>{place.name}</a></td>
-                          <td>{place.latitude}</td>
-                          <td>{place.longitude}</td>
-                </tr>
-                ))
-          }
-         </table>
-		<div key={this.state.location}>
-		<Singleplace lng={this.state.lng} lat={this.state.lat} name={this.state.location}/>
-		</div>
-
+                        <table>
+                        <thead>
+                                <tr>
+                                        <th>sort</th>
+                                        <th>locationID</th>
+                                        <th>name</th>
+                                        <th>latitude</th>
+                                        <th>longitude</th>
+                                </tr>
+                        </thead>
+                        <tbody>
+                                
+                                {this.state.places.map((place,index) =>(
+                                        <tr key={index}>
+                                                <th>{index}</th>
+                                                <td>{place.locationId}</td>
+                                                <td><Link to="/singleplaceview" onClick={()=>this.handleClick(place.longitude,place.latitude,place.name,place.locationId)}>{place.name}</Link></td>
+                                                <td>{place.latitude}</td>
+                                                <td>{place.longitude}</td>
+                                        </tr>
+                                        ))
+                                }
+                                
+                        </tbody>
+                        </table>
+		
+                </div>
                 </>
                 );
         }
@@ -105,8 +143,3 @@ export default class Table extends React.Component{
 
 
 
-class Singleplace extends React.Component{
-	render(){
-		return(<></>);
-	}
-}
