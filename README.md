@@ -3,13 +3,13 @@
 ## Progress
 ### User action
 
- - [ ] List all places in a table, and allow sorting of the table with one of the listed fields, linking to single places
+ - [x] List all places in a table, and allow sorting of the table with one of the listed fields, linking to single places
  - [ ] Show all places in a map, with links to each single place
- - [ ] Search for places which contain keywords in one field chosen by the user which will result in a table of place results
- - [ ] A separate view for one single place, containing:
-	 - [ ] a map showing the place
-	 - [ ] the place details
-	 - [ ] user comments, where users can add new comments (non-threaded)
+ - [x] Search for places which contain keywords in one field chosen by the user which will result in a table of place results
+ - [x] A separate view for one single place, containing:
+	 - [x] a map showing the place
+	 - [x] the place details
+	 - [x] user comments, where users can add new comments (non-threaded)
 - [ ] Add place into a list of user’s favourite places, and see the list in another view
 - [x] See the username in the top left/right of screen, and be able to log out
 
