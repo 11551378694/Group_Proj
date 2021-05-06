@@ -66,6 +66,61 @@ app.get('/getplaces/:sortkey/:order',function(req,res){
         });
 });
 
+app.get('/displaysearchresultintable/:searchField/:searchKey',function(req,res){
+	let searchKey = req.params.searchKey;
+	let searchField = req.params.searchField;
+	console.log(searchKey);
+	console.log(typeof searchKey);
+	console.log(searchField);
+	console.log(typeof searchField);
+	let search = {};
+	search[searchField] = { '$regex':searchKey, '$options':'i'};
+	console.log(search);
+	Location.find(search)
+		.exec(function(err,locations){
+		if(err)
+                        console.log("Error in get locations from db");
+
+                let locationList = [];
+                if(locations.length>0){
+                        for(i = 0;i<locations.length;i++){
+                                let location = {
+                                        locationId : locations[i].locationId,
+                                        name : locations[i].name,
+                                        latitude : locations[i].latitude,
+                                        longitude : locations[i].longitude
+                                }
+                                locationList.push(location);
+                        }
+                }
+		else{
+			locationList.push({
+					locationId : "N/A",
+                                        name : "N/A",
+                                        latitude : "N/A",
+                                        longitude :"N/A" 
+                                });
+		}
+
+
+
+                res.send(JSON.stringify(locationList));
+        });
+});
+
+app.get('/getusercomments/:locationId',function(req,res){
+	Location.findOne({locationId : req.params.locationId})
+	.exec(function(err,location){
+		let userComments = [];
+		if(err)
+			console.log("error happends in get user comments");
+		if(location!=null){
+			userComments = location.userComments;
+		}
+		res.send(JSON.stringify(userComments));
+	});
+});
+
 				
 app.get('/table', function (req,res) {
   res.sendFile(__dirname + "/table.html");
