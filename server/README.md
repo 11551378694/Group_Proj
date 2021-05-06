@@ -28,8 +28,6 @@
 | Retrieve Location | '/admin/location/'        | POST   | Required: "locationId"                                                |
 | Update Location   | '/admin/location/update/' | POST   | Required: "locationId"; at least one: "name", "latitude", "longitude" |
 | Delete Location   | '/admin/location/delete/' | POST   | Required: "locationId"                                                |
+| Refresh Location  | '/admin/location/refresh/'| POST   |                                                                       |
 
 /api/location-ctrl.js is the code of the CRUD of location schema.
-
-## TODO
-Testings and debugings
