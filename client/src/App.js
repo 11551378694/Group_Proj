@@ -20,6 +20,7 @@ import AdminLocationUpdate from './components/admin-location-update.component'
 import AdminLocationDelete from './components/admin-location-delete.component'
 import Chart from './components/chart.component'
 import PlaceOperation from './components/place-operation'
+import MapBox from './components/Map'
 import Singleplace from './components/singleplace'
 import PlaceDetails from './components/place-detail'
 import UserComment from './components/user-comment'
@@ -66,6 +67,12 @@ class App extends Component {
               </Link>
             </li>
 
+            <li className="nav-item">
+              <Link to={"/map"} className="nav-link">
+                Mapbox
+              </Link>
+            </li>
+
             {showAdminBoard && (
               <li className="nav-item">
                 <Link to={"/admin"} className="nav-link">
@@ -78,6 +85,14 @@ class App extends Component {
               <li className="nav-item">
                 <Link to={"/user"} className="nav-link">
                   User
+                </Link>
+              </li>
+            )}
+
+            {currentUser && (
+              <li className="nav-item">
+                <Link to={"/table"} className="nav-link">
+                  Table
                 </Link>
               </li>
             )}
@@ -142,6 +157,7 @@ class App extends Component {
             <Route exact path="/admin/location/delete" component={AdminLocationDelete} />
             <Route exact path="/chart" component={Chart} />
             <Route exact path="/table" component={PlaceOperation} />
+            <Route exact path="/map" component={MapBox} />
           </Switch>
         </div>
       </div>
