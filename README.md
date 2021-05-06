@@ -15,7 +15,7 @@
 
 ### Admin actions
 
- - [ ] Refresh data, i.e. reload from the online dataset, without affecting data which does not come from API (e.g. user comments within your app)
+ - [x] Refresh data, i.e. reload from the online dataset, without affecting data which does not come from API (e.g. user comments within your app)
  - [x] CRUD place data in the local database
  - [x] CRUD user data (username and password only) in the local database
  - [x] Log out as admin
