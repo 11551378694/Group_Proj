@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import handleCRUDButtonSubmit from './admin-location-create.component'
+import { handleCRUDButtonSubmit } from './admin-location-create.component'
 
 export default class AdminUserDelete extends Component {
     render() {

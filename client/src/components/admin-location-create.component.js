@@ -8,7 +8,9 @@ export const handleCRUDButtonSubmit = (url, data) => {
             'Content-Type': 'application/json'
         },
         body: JSON.stringify(data),
-    }).then(response => {
+    }).then(response =>
+        response.text()
+    ).then(response => {
         document.querySelector("#result").innerHTML = response
     })
 }
