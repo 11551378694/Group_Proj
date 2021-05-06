@@ -1,0 +1,44 @@
+.input-text-box{
+    background-color: white;
+    border: solid;
+    border-color: #DDD;
+    border-width: 1px;
+    border-radius: 10px;
+    box-shadow: 4px 3px 10px grey;
+}
+.input-text-button{
+    border: solid;
+    border-color: rgb(55, 210, 237);
+    border-width: 1px;
+    border-radius: 10px;
+    outline: none;
+    align-items: center;
+    justify-content: center;
+    background-image: linear-gradient(80deg, rgb(94, 255, 212), rgb(55, 210, 237) ,rgb(19, 125, 232));
+    
+}
+.comment-header {
+    text-align: left;
+    padding-left: 2em;
+}
+.comment-username{
+   color :  #00ccff;
+}
+.comment-content{
+    margin-top: 2px;
+    margin-bottom: 3px;
+    font-weight : bold;
+    text-align: left;
+    word-break: keep-all;
+    margin-left: 2em;
+    margin-right: 2em;
+}
+.comment-subscript{
+    font-style: italic;
+    font-size : small;
+    text-align: left;
+    margin-top: 2px;
+    margin-left: 2em;
+    margin-right: 2em;
+    padding-left: 4em;
+}
