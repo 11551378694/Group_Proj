@@ -19,6 +19,10 @@ import AdminLocationRetrieve from './components/admin-location-retrieve.componen
 import AdminLocationUpdate from './components/admin-location-update.component'
 import AdminLocationDelete from './components/admin-location-delete.component'
 import Chart from './components/chart.component'
+import PlaceOperation from './components/place-operation'
+import Singleplace from './components/singleplace'
+import PlaceDetails from './components/place-detail'
+import UserComment from './components/user-comment'
 
 class App extends Component {
   constructor(props) {
@@ -83,7 +87,13 @@ class App extends Component {
                 Chart
                 </Link>
             </li>
+            <li className="nav-item">
+              <Link to={"/table"} className="nav-link">
+                Table
+              </Link>
+            </li>
           </div>
+          
 
           {currentUser ? (
             <div className="navbar-nav ml-auto">
@@ -131,6 +141,7 @@ class App extends Component {
             <Route exact path="/admin/location/update" component={AdminLocationUpdate} />
             <Route exact path="/admin/location/delete" component={AdminLocationDelete} />
             <Route exact path="/chart" component={Chart} />
+            <Route exact path="/table" component={PlaceOperation} />
           </Switch>
         </div>
       </div>
