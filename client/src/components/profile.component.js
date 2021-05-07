@@ -12,6 +12,7 @@ export default class Profile extends Component {
 
   render() {
     const { currentUser } = this.state;
+    console.log(currentUser)
 
     return (
       <div className="container">
@@ -27,7 +28,7 @@ export default class Profile extends Component {
         </p>
         <p>
           <strong>Id:</strong>{" "}
-          {currentUser.id}
+          {currentUser.realid}
         </p>
         <strong>Authorities:</strong>
         <ul>
