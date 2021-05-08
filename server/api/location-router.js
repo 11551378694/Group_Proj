@@ -1,3 +1,6 @@
+//update on /server/api/location-routers.js
+// with change in line 22
+
 const express = require('express')
 const LocationCtrl = require('./location-ctrl')
 const router = express.Router()
@@ -16,5 +19,6 @@ module.exports = function (app) {
   app.post('/admin/api/location/update', LocationCtrl.updateLocation)
   app.post('/admin/api/location/delete', LocationCtrl.deleteLocation)
   app.post('/admin/api/location/refresh', LocationCtrl.refreshLocation)
+  app.post('/user/api/favlocation/retrieve', LocationCtrl.retrieveFavLocation)
 
 }

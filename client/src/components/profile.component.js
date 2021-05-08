@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import AuthService from "../services/auth.service";
+import Favourite from './favourite';
 
 export default class Profile extends Component {
   constructor(props) {
@@ -35,6 +36,7 @@ export default class Profile extends Component {
           {currentUser.roles &&
             currentUser.roles.map((role, index) => <li key={index}>{role}</li>)}
         </ul>
+        <Favourite check={currentUser.username}/>
       </div>
     );
   }

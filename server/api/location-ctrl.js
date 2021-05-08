@@ -1,4 +1,8 @@
+// update on /server/api/location-ctrl.js
+// with change in lines 37-53, 227
+
 const Location = require('../app/models/location.model')
+const User = require('../app/models/user.model')
 
 createLocation = (req, res) => {
   let new_location = new Location({
@@ -26,6 +30,22 @@ retrieveLocation = (req, res) => {
           "Location name: " + location.name + "<br>\n" +
           "Latitude: " + location.latitude + "<br>\n" +
           "Longitude: " + location.longitude + "<br>\n");
+      })
+    }
+  })
+}
+
+retrieveFavLocation = (req, res) => {
+  console.log(req.body)
+  let query = User.findOne({username: req.body['username']  }, (err, result) => {
+    if (result == null) {
+      return res.send("No place is added to faourite list.");
+    } else {
+      query.populate('Location')
+      query.exec((err, result) => {
+        if (err) return handleError(err);
+        res.send(result)
+
       })
     }
   })
@@ -202,5 +222,6 @@ module.exports = {
   retrieveLocation,
   updateLocation,
   deleteLocation,
-  refreshLocation
+  refreshLocation,
+  retrieveFavLocation
 }
