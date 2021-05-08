@@ -1,5 +1,5 @@
 import React from "react";
-
+import ViewListIcon from '@material-ui/icons/ViewList';
 export default class PlaceDetails extends React.Component{
 
     constructor(props){
@@ -112,7 +112,7 @@ export default class PlaceDetails extends React.Component{
         return(
             <div>
             <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#placedetails" aria-expanded="false" aria-controls="placedetails">
-            {this.state.name}
+            {this.state.name} <ViewListIcon />
             </button>
             <div class="collapse" id="placedetails">
             <ul class="list-group">
@@ -120,7 +120,7 @@ export default class PlaceDetails extends React.Component{
                 <li class="list-group-item">Latitude : {this.state.lat}</li>
                 <li class="list-group-item">Longitude : {this.state.lng}</li>
                 <li class="list-group-item">
-                    <table>
+                    <table className="table">
                     <caption style={{captionSide:"top"}}>Lastest Road Condition</caption>
                         <thead>
                             <tr>
