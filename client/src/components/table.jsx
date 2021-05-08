@@ -83,8 +83,6 @@ export default class Table extends React.Component{
                                         <select className="input-text-box" onChange={event=>{this.handleSearchFieldChange(event)}}>
                                                 <option value="locationId">Location ID</option>
                                                 <option value="name">Name</option>
-                                                <option value="latitude">Latitude</option>
-                                                <option value="longitude">Longitude</option>
                                         </select>
                                         </div>
                                         <div className="table-input">
