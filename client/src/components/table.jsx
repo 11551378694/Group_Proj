@@ -114,7 +114,7 @@ export default class Table extends React.Component{
                                 </div>
                         </div>
 			
-                        <table>
+                        <table className="table">
                         <thead>
                                 <tr>
                                         <th>sort</th>
