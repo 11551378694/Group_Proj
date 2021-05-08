@@ -2,12 +2,13 @@ import React, { Component } from "react";
 import {BrowserRouter as Router, Link, Route, Switch, useRouteMatch, useParams, useLocation} from "react-router-dom";//can be found in external library: ReactDOM
 import mapboxgl from 'mapbox-gl/dist/mapbox-gl-csp';
 import SearchIcon from '@material-ui/icons/Search';
+import AuthService from "../services/auth.service";
 mapboxgl.accessToken = 'pk.eyJ1IjoibGV1bmczMDEiLCJhIjoiY2tvNnl2dHppMHJxbDJxcXdteTRvNnU3ZyJ9.HVslWQ3-PqqIw-ReK2hUsQ';
 
 export default class Table extends React.Component{
         constructor(props){
                 super(props);
-                this.state = {places:[],sortkey:"locationId",order:"1",searchKey:undefined,searchField:"locationId"};
+                this.state = {places:[],sortkey:"locationId",order:"1",searchKey:undefined,searchField:"locationId",currentUser:"test_hello"};
 		this.handleOrderChange = this.handleOrderChange.bind(this);
 		this.handleFieldChange = this.handleFieldChange.bind(this);
 		this.handleClick = this.handleClick.bind(this);
@@ -20,6 +21,13 @@ export default class Table extends React.Component{
                 .then(placesList =>{
                         this.setState({places:placesList});
                 });
+		
+		let user = AuthService.getCurrentUser();
+		if(user){
+		    this.setState({
+			currentUser: user.username
+		    })
+        	}
         }
 
         handleSearchKeyChange(event)
@@ -67,7 +75,21 @@ export default class Table extends React.Component{
 		this.props.changePlace(locationId,latitude,longitude,name);
 	}
 
-
+	handleAddFavorite(locationId,username){
+                let favourite = {
+                        'locationId' : locationId,
+                        'username' : username
+                };
+                console.log(username);
+                fetch('http://csci2720-g74.cse.cuhk.edu.hk/postfavouritelocations',{
+                        method:'POST',
+                        headers:{
+                                'Content-Type':'application/json'
+                        },
+                        body: JSON.stringify(favourite)
+                }).then()
+                .catch(e=>{console.log('error in adding favourite locaiton')})
+        }
 
 
         render(){
@@ -120,6 +142,7 @@ export default class Table extends React.Component{
                                         <th>name</th>
                                         <th>latitude</th>
                                         <th>longitude</th>
+					<th>Favorite</th>
                                 </tr>
                         </thead>
                         <tbody>
@@ -131,6 +154,7 @@ export default class Table extends React.Component{
                                                 <td><Link to="/singleplaceview" onClick={()=>this.handleClick(place.longitude,place.latitude,place.name,place.locationId)}>{place.name}</Link></td>
                                                 <td>{place.latitude}</td>
                                                 <td>{place.longitude}</td>
+						<td><button className="input-text-button" onClick={()=>{this.handleAddFavorite(place.locationId,this.state.currentUser)}}>Add</button></td>
                                         </tr>
                                         ))
                                 }
