@@ -94,7 +94,7 @@ export default class UserComment extends React.Component{
                         <li className="list-group-item">
                         <textarea className="input-text-box" placeholder="Leave your comment..." id="newComment" rows="2" style={{width:"50vw"}} onChange={event=>this.handleTextAreaChange(event)}/>
                         &nbsp;&nbsp;
-                        <button type="button" className="input-text-button" onClick={this.postCommentToDB}><KeyboardReturnIcon /></button> 
+                        <button type="button" className="input-text-button comment-button" onClick={this.postCommentToDB}><KeyboardReturnIcon /></button> 
                         </li>
                     </ul>
                 </div>
