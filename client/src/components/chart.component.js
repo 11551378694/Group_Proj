@@ -87,7 +87,7 @@ const Chart = () => {
                         let now_date = new Date()
                         let ur = "https://api.data.gov.hk/v1/historical-archive/get-file?url=https%3A%2F%2Fresource.data.one.gov.hk%2Ftd%2Fjourneytime.xml&time="
                         if (input_type === 0) {
-                            for (let i = 0; i < 10; i++) {
+                            for (let i = 0; i < 11; i++) {
                                 for (let j = 0; j < (i === 9 ? 5 : 4); j++) {
                                     let thee = new Date((now_date.getTime()) - 60 * 1000 * 60 * i - 60 * 1000 * 15 * j)
                                     await fetch(ur + timeToString(thee, true))
@@ -108,7 +108,7 @@ const Chart = () => {
                                 }
                             }
                         } else {
-                            for (let i = 0; i < 7; i++) {
+                            for (let i = 0; i < 8; i++) {
                                 for (let j = 0; j < 5; j++) {
                                     let thee = new Date((now_date.getTime()) - 60 * 1000 * 60 * 24 * i - 60 * 1000 * 15 * j)
                                     await fetch(ur + timeToString(thee, true))
