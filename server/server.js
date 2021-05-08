@@ -139,7 +139,41 @@ app.post('/postusercomments/:locationId',function(req,res){
 	});
 	
 });
-
+const User = db.user;
+app.post('/postfavouritelocations',function(req,res){
+  let username=req.body.username;
+  let locationId = req.body.locationId;
+  console.log(username);
+  console.log(locationId);
+  Location.findOne({'locationId':locationId})
+  .exec(function(err,loc){
+      if(err)
+        console.log(err);
+      if(loc!=null){
+          User.findOne({'username':username})
+          .exec(function(err,user){
+              if(err)
+                console.log(err);
+              if(user!=null){
+		      console.log(loc.id);
+		if(!user.favouritePlace.includes(loc.id)){
+			User.update({'username':username},
+				{$push:{"favouritePlace":loc}},
+				function(err,raw){
+					if(err)
+						console.log(err);
+					else
+						console.log('update success');
+				});
+		}
+		      
+                console.log(user.favouritePlace);
+              }
+		  console.log(user);
+          });
+      }
+  });
+});
 app.get('/table', function (req,res) {
   res.sendFile(__dirname + "/table.html");
 });
