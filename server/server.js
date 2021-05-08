@@ -116,6 +116,7 @@ app.get('/getusercomments/:locationId',function(req,res){
 			console.log("error happends in get user comments");
 		if(location!=null){
 			userComments = location.userComments;
+			userComments = userComments.reverse();
 		}
 		res.send(JSON.stringify(userComments));
 	});
