@@ -77,37 +77,42 @@ export default class Table extends React.Component{
                 <>
                 <div className="container">
 
-                        <form>
-                                <div>Select field to Search: &nbsp;&nbsp;
-                                <select onChange={event=>{this.handleSearchFieldChange(event)}}>
+                        <div className="table-input-area">
+                                <form>
+                                        <div className="table-input">Select field to Search: &nbsp;&nbsp;
+                                        <select className="input-text-box" onChange={event=>{this.handleSearchFieldChange(event)}}>
+                                                <option value="locationId">Location ID</option>
+                                                <option value="name">Name</option>
+                                                <option value="latitude">Latitude</option>
+                                                <option value="longitude">Longitude</option>
+                                        </select>
+                                        </div>
+                                        <div className="table-input">
+                                        <input type="search" className="input-text-box" placeholder="Enter keyword" onChange={event=>{this.handleSearchKeyChange(event)}}/>&nbsp;&nbsp;
+                                        <button type="button" className="input-text-button" onClick={event=>{this.handleSearch(event)}}><SearchIcon /></button>
+                                        </div>
+                                </form >
+                                <div className="table-input">
+                                <label className="d-inline" >
+                                        Sort the places according to:&nbsp;&nbsp;
+                                <select className="input-text-box" value={this.state.sortkey}  onChange={this.handleFieldChange}>
                                         <option value="locationId">Location ID</option>
                                         <option value="name">Name</option>
                                         <option value="latitude">Latitude</option>
                                         <option value="longitude">Longitude</option>
                                 </select>
+                                </label >
+                        
+                                <label className="d-inline">
+                                &nbsp;&nbsp;in &nbsp;&nbsp;
+                                <select className="input-text-box" value={this.state.order} onChange={this.handleOrderChange}>
+                                        <option value="1">ascending</option>
+                                        <option value="-1">descending</option>
+                                </select>
+                                &nbsp;&nbsp;order
+                                </label>
                                 </div>
-                                <input type="search" className="input-text-box"placeholder="Enter keyword" onChange={event=>{this.handleSearchKeyChange(event)}}/>
-                                <button type="button" className="input-text-button" onClick={event=>{this.handleSearch(event)}}><SearchIcon /></button>
-                        </form>
-			<label className="d-inline">
-				Sort the places according to:&nbsp;&nbsp;
-			<select value={this.state.sortkey}  onChange={this.handleFieldChange}>
-				<option value="locationId">Location ID</option>
-				<option value="name">Name</option>
-				<option value="latitude">Latitude</option>
-				<option value="longitude">Longitude</option>
-			</select>
-			</label >
-		
-			<label className="d-inline">
-                        &nbsp;&nbsp;in &nbsp;&nbsp;
-			<select value={this.state.order} onChange={this.handleOrderChange}>
-				<option value="1">ascending</option>
-				<option value="-1">descending</option>
-			</select>
-				order
-			</label>
-
+                        </div>
 			
                         <table>
                         <thead>
